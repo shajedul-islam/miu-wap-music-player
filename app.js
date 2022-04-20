@@ -75,7 +75,7 @@ app.get("/", (req, res) => {
 // (D3) ADMIN PAGE - REGISTERED USERS ONLY
 app.get("/admin", (req, res) => {
   if (jwtVerify(req.cookies)) {
-    res.sendFile(path.join(__dirname, "/admin.html"));
+    res.sendFile(path.join(__dirname, "frontend", "/index.html"));
   } else {
     res.redirect("../login");
   }
