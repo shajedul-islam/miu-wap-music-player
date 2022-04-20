@@ -1,6 +1,6 @@
 function login () {
   // (A) GET EMAIL + PASSWORD
-  var data = new FormData(document.getElementById("login"));
+  var data = new FormData(document.getElementById("login-form"));
   
   // (B) AJAX REQUEST
   fetch("/in", { method:"POST", body:data })

@@ -1,0 +1,231 @@
+html, body{height:100%;}
+#icerik{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -50px;
+  background-color:#000;
+  background-size:contain;
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+
+#player{
+  height:50px;
+  color:#FFF;
+  background:#333;
+}
+
+#player.online{
+  border-top:4px solid #006CFE;
+}
+
+#player.offline{
+  border-top:4px solid #D9534F;
+}
+
+#player #bilgiler{
+  width:47%;
+  float:left;
+}
+
+#player #bilgiler #kapak{
+  width:54px;
+  height:54px;
+  margin-top:-8px;
+  background:#AAA;
+  border:3px solid #FFF;
+  box-shadow:0 0 10px rgba(0,0,0,0.5);
+  float:left;
+}
+#player #bilgiler #kapak img{
+  width:100%;
+  height:100%;
+}
+
+#player #bilgiler .radyo{
+  color:#FFF;
+  margin:2px 0 0 15px;
+  display:inline-block;
+}
+
+#player.online #bilgiler .radyo{
+  -webkit-animation: glowOn .5s infinite alternate;
+}
+
+#player.offline #bilgiler .radyo{
+  -webkit-animation: glowOff .5s infinite alternate;
+}
+
+#player #bilgiler .sarki{
+  font-size:12px;
+  margin:2px 0 0 15px;
+  display:inline-block;
+}
+
+#player #bilgiler .sarki strong{
+  color:#999;
+}
+
+#player #bilgiler .liste, #player #bilgiler .istek{
+  width:32px;
+  height:32px;
+  margin:-14px 1px 0 0;
+  text-align:center;
+  color:#999;
+  text-shadow:0 0 0px #000;
+  font-size:16px;
+  line-height:2.2;
+  float:right;
+}
+#player #bilgiler .istek i{
+  width:100%;
+  height:100%;
+  display:block;
+  line-height:1.9;
+}
+
+
+#player.online #kontrol:hover, #player.online #bilgiler .liste:hover, #player.online #bilgiler .istek:hover, #player.online #sag .yenile:hover, #player.online #sag .sessiz:hover, #player.online #sosyal li:hover, #player.online #sosyal li:hover > a{
+  cursor:pointer;
+  background:#006CFE;
+  color:#FFF;
+}
+
+#player.offline #kontrol:hover, #player.offline #bilgiler .liste:hover, #player.offline #bilgiler .istek:hover, #player.offline #sag .yenile:hover, #player.offline #sag .sessiz:hover, #player.offline #sosyal li:hover, #player.offline #sosyal li:hover > a{
+  cursor:pointer;
+  background:#D9534F;
+  color:#FFF;
+}
+
+#player #kontrol{
+  width:50px;
+  height:46px;
+  position:absolute;
+  left:50%;
+  margin-left:-25px;
+  background:#006CFE;
+  text-align:center;
+  font-size:24px;
+  line-height:2.2;
+}
+
+#player.online #kontrol{
+  background:#006CFE;
+}
+
+#player.offline #kontrol{
+  background:#D9534F;
+}
+
+#player #sag .yenile{
+  width:32px;
+  height:32px;
+  margin:8px 1px 0 70px;
+  text-align:center;
+  color:#999;
+  text-shadow:0 0 0px #000;
+  font-size:16px;
+  line-height:2.2;
+  float:left;
+}
+
+#player #sag .sessiz{
+  width:32px;
+  height:32px;
+  margin:8px 1px 0 10px;
+  text-align:center;
+  color:#999;
+  text-shadow:0 0 0px #000;
+  font-size:16px;
+  line-height:2.2;
+  float:left;
+}
+
+#mesaj{
+  width:280px;
+  margin:6px 5px 0 5px;
+  padding:5px 10px;
+  color:#999;
+  display:inline-block;
+  background:#222;
+  float:left;
+}
+
+#sosyal{
+  float:right;
+  text-align:center;
+  line-height:2.2;
+}
+
+#sosyal li{
+  width:32px;
+  height:32px;
+  margin:8px 6px 0 6px;
+  float:left;
+  list-style-type:none;
+}
+
+#sosyal li a{
+  color:#999;
+}
+
+#sosyal li:first-child{
+  margin-left:0;
+}
+
+#sosyal li:last-child{
+  margin-right:0;
+}
+
+.player{
+  display:none;
+}
+
+@-webkit-keyframes glowOn {
+  to {
+    text-shadow: 0 0 10px #006CFE;
+  }
+}
+@-webkit-keyframes glowOff {
+  to {
+    text-shadow: 0 0 10px #D9534F;
+  }
+}
+
+#gecmis.online{
+  border:5px solid #006CFE;
+}
+#gecmis.offline{
+  border:5px solid #D9534F;
+}
+#gecmis{
+  width:360px;
+  height:200px;
+  margin:0;
+  padding:0;
+  background:#333;
+  overflow:auto;
+  position:absolute;
+  left:50%;
+  bottom:46px;
+  margin-left:-180px;
+  display:none;
+}
+
+#gecmis li{
+  color:#999;
+  padding:4px 10px;
+  list-style-type:none;
+}
+
+#gecmis li:nth-child(odd){
+  background:#222;
+}
+
+#gecmis li i{
+  margin-left:4px;
+  margin-right:10px;
+}
+.modal-title{color:#333;}
+*{border-radius:0 !important;}

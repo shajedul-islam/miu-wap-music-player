@@ -11,10 +11,10 @@ const bcrypt = require("bcryptjs"),
 
 // (A2) EXPRESS + MIDDLEWARE
 const app = express();
-app.use(multer().array());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(multer().array());;
 app.use(cookieParser());
-
+const Song = require("./model/song")
+const router = express.Router();
 // (B) USER ACCOUNTS - AT LEAST ENCRYPT YOUR PASSWORDS!
 // bcrypt.hash("PASSWORD", 8, (err, hash) => { console.log(hash); });
 const users = {
@@ -66,6 +66,7 @@ jwtVerify = (cookies) => {
 // (D) EXPRESS HTTP
 // (D1) STATIC ASSETS
 app.use("/assets", express.static(path.join(__dirname, "assets")))
+app.use("/resources", express.static(path.join(__dirname, "resources")))
 
 // (D2) HOME PAGE - OPEN TO ALL
 app.get("/", (req, res) => {
@@ -101,9 +102,14 @@ app.post("/in", async (req, res) => {
     res.status(200);
     res.send("OK");
   } else {
-    res.status(200);
+    res.status(401);
     res.send("Invalid user/password");
   }
+});
+
+app.post("/song", async (req, res) =>{
+  res.status(200)
+  res.send(Song.fetchAll())
 });
 
 // (D6) LOGOUT ENDPOINT
