@@ -80,7 +80,7 @@ app.post("/in", async (req, res) => {
   console.log(users);
   let pass = users[req.body.email] !== undefined;
   if (pass) {
-    console.log('pass true')
+    console.log()
     pass = await bcrypt.compare(req.body.password, users[req.body.email]);
     console.log(req.body.email + " --- " + pass);
   }
