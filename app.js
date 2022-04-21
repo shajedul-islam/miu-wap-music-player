@@ -15,10 +15,12 @@ app.use(multer().array());;
 app.use(cookieParser());
 const Song = require("./model/song")
 const router = express.Router();
+
 // (B) USER ACCOUNTS - AT LEAST ENCRYPT YOUR PASSWORDS!
-// bcrypt.hash("PASSWORD", 8, (err, hash) => { console.log(hash); });
+bcrypt.hash("PASSWORD", 8, (err, hash) => { console.log(hash); });
 const users = {
-  "jon@doe.com" : "$2a$08$g0ZKZhiA97.pyda3bsdQx.cES.TLQxxKmbvnFShkhpFeLJTc6DuA6"
+  "sunday@example.com" : "$2a$08$g0ZKZhiA97.pyda3bsdQx.cES.TLQxxKmbvnFShkhpFeLJTc6DuA6",
+  "monday@example.com" : "$2a$08$g0ZKZhiA97.pyda3bsdQx.cES.TLQxxKmbvnFShkhpFeLJTc6DuA6",
 };
 
 // (C) JSON WEB TOKEN
@@ -73,6 +75,25 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "/home.html"));
 });
 
+// (D5) LOGIN ENDPOINT
+app.post("/in", async (req, res) => {
+  console.log(users);
+  let pass = users[req.body.email] !== undefined;
+  if (pass) {
+    console.log('pass true')
+    pass = await bcrypt.compare(req.body.password, users[req.body.email]);
+    console.log(req.body.email + " --- " + pass);
+  }
+  if (pass) {
+    res.cookie("JWT", jwtSign(req.body.email));
+    res.status(200);
+    res.send("OK");
+  } else {
+    res.status(401);
+    res.send("Invalid user/password");
+  }
+});
+
 // (D3) ADMIN PAGE - REGISTERED USERS ONLY
 app.get("/admin", (req, res) => {
   if (jwtVerify(req.cookies)) {
@@ -88,22 +109,6 @@ app.get("/login", (req, res) => {
     res.redirect("../admin");
   } else {
     res.sendFile(path.join(__dirname, "/login.html"));
-  }
-});
-
-// (D5) LOGIN ENDPOINT
-app.post("/in", async (req, res) => {
-  let pass = users[req.body.email] !== undefined;
-  if (pass) {
-    pass = await bcrypt.compare(req.body.password, users[req.body.email]);
-  }
-  if (pass) {
-    res.cookie("JWT", jwtSign(req.body.email));
-    res.status(200);
-    res.send("OK");
-  } else {
-    res.status(401);
-    res.send("Invalid user/password");
   }
 });
 
